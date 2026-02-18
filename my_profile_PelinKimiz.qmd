@@ -1,0 +1,54 @@
+---
+title: "Data Science Profile of Pelin Kımız"
+format:   
+  html: 
+    embed-resources: true
+    code-fold: true
+---
+
+```{r}
+#| label: packages-data
+#| message: false
+library(tidyverse)
+library(readxl) # For reading Excel files
+
+# Read in the data below
+
+profiles_2025 <- read_xlsx("Data Science Profile.xlsx")
+
+#dim(profiles_2025)
+#colnames(profiles_2025)
+#head(profiles_2025)
+```
+
+
+## My Data Science Profile {#sec-1}
+
+I am **Pelin KIMIZ!**. I am from **Türkiye!**.
+
+![](pelin.jpg){height=200}
+
+This is my Data Science Profile:
+
+```{r}
+#| label: my-profile
+#| fig-width: 8
+#| fig-height: 5
+#| fig-align: "center"
+
+profiles_2025 |> pivot_longer(`Social Science`:`Machine Learning`, 
+                              names_to = "Dimension", 
+                              values_to = "Value") |> 
+  filter(Name == "Pelin Kimiz") |> 
+  mutate(Dimension_ordered = Dimension |> fct_inorder() |> fct_rev()) |> 
+  ggplot(aes(y = Dimension_ordered, x = Value, fill = Dimension_ordered)) + geom_col() +
+  labs(x = "", y = "", title = "Pelin Kımız' Data Science Profile", caption = "Source: Self-assessment 2025") +
+  scale_x_continuous(limits = c(0,10), breaks = 1:10, minor_breaks = NULL) +
+  scale_fill_brewer(palette = "Dark2") +
+  theme_minimal(base_size = 16) +
+  theme(legend.position = "none")
+```
+
+**Background of my top data science skills:** *I developed my strongest data science skills by exploring how data-driven insights can enhance the understanding of legal and social systems. My interest in data analytics began during my Internet Law course, where I became curious about how data is used to regulate and interpret online behavior. Since then, I have strengthened my skills through academic coursework, self-learning, and hands-on projects using R for data analysis and visualization.*
+
+**Next things I want to learn in data science:** *I would like to deepen my knowledge of machine learning and its applications in law and social science. I am especially interested in learning how predictive models can be used to analyze patterns in legal data and support decision-making. Additionally, I want to improve my data storytelling and dashboard design skills to communicate complex findings more effectively.*
