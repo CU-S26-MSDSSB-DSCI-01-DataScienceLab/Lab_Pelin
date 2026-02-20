@@ -14,7 +14,7 @@ library(readxl) # For reading Excel files
 
 # Read in the data below
 
-profiles_2025 <- read_xlsx("Data Science Profile.xlsx")
+profiles_2025 <- read_xlsx("Data Sciene Profiles.xlsx")
 
 #dim(profiles_2025)
 #colnames(profiles_2025)
